@@ -1,5 +1,5 @@
 import { TriangularPairs } from './../src/TriangularPairs.mjs'
-import { selection } from './data/pairs-selection.mjs'
+import { selection } from './pairs-selection.mjs'
 import { config } from './../src/data/config.mjs'
 
 
