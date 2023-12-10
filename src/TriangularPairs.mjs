@@ -418,11 +418,9 @@ export class TriangularPairs {
         if( !Array.isArray( pairsEncoded ) ) {
             messages.push( `Key 'pairsEncoded' is not type of array.` )
         } else {
+            const regex = new RegExp( config['import']['splitter'], 'g' )
             const msgs = pairsEncoded
                 .reduce( ( acc, a, index ) => {
-
-                    const regex = new RegExp( config['import']['splitter'], 'g' )
-
                     if( typeof a !== 'string' ) {
                         acc.push( `Item in key 'pairsEncoded' is not type of string.` )
                     } else if( ( pairsEncoded[ 0 ].match( regex ) || [] ).length === 3 ) {
