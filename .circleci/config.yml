@@ -1,0 +1,9 @@
+jobs:
+  build:
+    docker:
+      - image: cimg/node:20.5.0
+    steps:
+      - checkout
+      - run: node --version
+      - run: npm install
+      - run: node ./tests/circle-ci.mjs

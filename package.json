@@ -1,0 +1,15 @@
+{
+  "name": "triangular-pairs",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./src/TriangularPairs",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [ "defi", "uniswap", "crypto" ],
+  "author": "a6b8",
+  "license": "MIT"
+}
