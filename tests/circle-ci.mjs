@@ -11,7 +11,7 @@ const pairsEncoded = selection['data']
             pair['token1'],
             pair['token2']
         ]
-            .join( ' ' )
+            .join( '_' )
 
         return pairEncoded
     } )
