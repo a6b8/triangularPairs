@@ -11,7 +11,7 @@ const pairsEncoded = selection['data']
             pair['token1'],
             pair['token2']
         ]
-            .join( config['import']['splitter'] + '' )
+            .join( config['import']['splitter'] + '-' )
 
         return pairEncoded
     } )
@@ -20,4 +20,4 @@ const triangularPairs  = new TriangularPairs ()
 triangularPairs.health( { pairsEncoded } )
 
 console.log( 'Success!' )
-process.exit( 1 )
+process.exit( 0 )
