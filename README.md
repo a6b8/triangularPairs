@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/build/github/{{username}}/{{repository}}/{{branch}})]({{circleci_link}})
+[![CircleCI](https://img.shields.io/circleci/build/github/a6b8/triangularPairs/main)]()
 
 
 # Triangular Pairs
