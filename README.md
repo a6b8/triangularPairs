@@ -24,18 +24,8 @@ import { TriangularPairs } from './src/TriangularPairs.mjs'
 import { selection } from './tests/data/pairs-selection.mjs'
 
 const triangularPairs  = new TriangularPairs ()
-const pairsEncoded = selection['data']
-    .map( pair => {
-        const str = [
-            pair['contract_address'],
-            pair['pair'],
-            pair['token1'],
-            pair['token2']
-        ]
-            .join( '_' )
-        return str
-    } )
-
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': selection['data'] } )
 triangularPairs
     .start( { pairsEncoded } )
     .getTriangularPairs()
