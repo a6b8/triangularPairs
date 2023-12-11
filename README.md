@@ -8,9 +8,9 @@ Triangular Pairs can be useful for executing composite transactions on a blockch
 ```
   ------------------------------------------------------------
  |                                                            |
- |     |-----|-----|      |-----|-----|      |-----|-----|    |
+ |      -----|-----        -----|-----        -----|-----     |
   ---> |  A     B  | ---> |  B     Z  | ---> |  Z     A  |---> 
-       |-----|-----|      |-----|-----|      |-----|-----|
+        -----|-----        -----|-----        -----|-----
            Pool n            Pool n             Pool n+2    
          Contract A         Contract B         Contract A
 ```
