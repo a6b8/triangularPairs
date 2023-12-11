@@ -83,7 +83,7 @@ console.log( tokens )
 
 ```
 
-You can find a sample file here: [./tests/pairs-selection.mjs]()
+You can find a sample file here: [./tests/pairs-selection.mjs](https://github.com/a6b8/triangularPairs/blob/main/tests/pairs-selection.mjs)
 
 
 ### .getTokens()
