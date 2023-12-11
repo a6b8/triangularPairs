@@ -1,22 +1,9 @@
 import { TriangularPairs } from './../src/TriangularPairs.mjs'
 import { selection } from './pairs-selection.mjs'
-import { config } from './../src/data/config.mjs'
-
-
-const pairsEncoded = selection['data']
-    .map( pair => {
-        const pairEncoded = [
-            pair['contract_address'],
-            pair['pair'],
-            pair['token1'],
-            pair['token2']
-        ]
-            .join( '_' )
-
-        return pairEncoded
-    } )
 
 const triangularPairs  = new TriangularPairs ()
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': selection['data'] } )
 triangularPairs.health( { pairsEncoded } )
 
 console.log( 'Success!' )

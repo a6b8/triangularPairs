@@ -3,20 +3,12 @@ import fs from 'fs'
 import { pairs } from './data/pairs-all.mjs'
 
 
-const pairsEncoded = pairs['data']
-    .map( pair => {
-        const pairEncoded = [
-            pair['contract_address'],
-            pair['pair'],
-            pair['token1'],
-            pair['token2']
-        ]
-            .join( '_' )
 
-        return pairEncoded
-    } )
 
 const triangularPairs  = new TriangularPairs ()
+
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': pairs['data'] } )
 triangularPairs.start( { pairsEncoded } )
 
 const files = [

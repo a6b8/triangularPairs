@@ -32,6 +32,16 @@ export class TriangularPairs {
     }
 
 
+    encodePairs( { items } ) {
+        return items
+            .map( pair => {
+                return [ 'contract_address', 'pair', 'token1', 'token2' ]
+                    .map( key => pair[ key ] )
+                    .join( this.#config['import']['splitter'] )
+            } )
+    }
+
+
     getTokens() {
         return this.#tokens
     }

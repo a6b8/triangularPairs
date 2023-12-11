@@ -57,6 +57,35 @@ Starts the process and generates `this.#tokens`, `this.#pairs`, and `this.#trian
 returns  
 `this`
 
+```js
+import { TriangularPairs } from './src/TriangularPairs.mjs'
+const triangularPairs  = new TriangularPairs ()
+const selection = {
+    "data": [
+        {
+            "contract_address": "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f",
+            "pair": "0x8c3b2e86aaceb1b7ad8cb96e63881c28f5cef29a",
+            "token1": "0x11a605d7e12b64d713e93c487277d819a1d14b99",
+            "token2": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "total": 5434,
+            "tx_hash": "0x1e75b533f8aeda500c5d9837d40319d144c855ef7660679bd7a92368ff958fa7"
+        }
+        ...
+    ]
+}
+
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': selection['data'] } )
+const tokens = triangularPairs
+    .start( { pairsEncoded } )
+    .getTokens()
+console.log( tokens )
+
+```
+
+You can find a sample file here: [./tests/pairs-all.mjs]()
+
+
 ### .getTokens()
 
 Filters by tokens and provides references to individual pool pairs.
@@ -66,7 +95,18 @@ Filters by tokens and provides references to individual pool pairs.
 returns  
 `this.#tokens`
 
-{{Method 1 Description}}
+```js
+import { TriangularPairs } from './src/TriangularPairs.mjs'
+import { selection } from './tests/data/pairs-selection.mjs'
+
+const triangularPairs  = new TriangularPairs ()
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': selection['data'] } )
+const tokens = triangularPairs
+    .start( { pairsEncoded } )
+    .getTokens()
+console.log( tokens )
+```
 
 ### .getPairs()
 
@@ -77,7 +117,18 @@ Filters by pool pairs and lists the possible pools that provide this exchange op
 returns  
 `this.#pairs`
 
-{{Method 2 Description}}
+```js
+import { TriangularPairs } from './src/TriangularPairs.mjs'
+import { selection } from './tests/data/pairs-selection.mjs'
+
+const triangularPairs  = new TriangularPairs ()
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': selection['data'] } )
+const pairs = triangularPairs
+    .start( { pairsEncoded } )
+    .getPairs()
+console.log( pairs )
+```
 
 ### .getTriangularPairs()
 
@@ -87,6 +138,19 @@ Generates all possible unique Triangular Pairs and provides references to furthe
 
 returns  
 `this.#triangularPairs`
+
+```js
+import { TriangularPairs } from './src/TriangularPairs.mjs'
+import { selection } from './tests/data/pairs-selection.mjs'
+
+const triangularPairs  = new TriangularPairs ()
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': selection['data'] } )
+const triPairs = triangularPairs
+    .start( { pairsEncoded } )
+    .getTriangularPairs()
+console.log( triPairs )
+```
 
 ## License
 
