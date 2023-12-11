@@ -83,7 +83,7 @@ console.log( tokens )
 
 ```
 
-You can find a sample file here: [./tests/pairs-all.mjs]()
+You can find a sample file here: [./tests/pairs-selection.mjs]()
 
 
 ### .getTokens()
