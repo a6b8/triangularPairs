@@ -3,7 +3,7 @@
 
 # Triangular Pairs
 
-Diese Modul hilft dabei Triangular Pairs zu finden, optimiert für Uniswap Pools.
+Triangular Pairs can be useful for executing composite transactions on a blockchain to efficiently carry out arbitrage opportunities. This module helps in identifying all possible pairs of pools, such as Uniswap V2 or V3, and subsequently conducts further analyses.
 
 ## Quickstart
 
@@ -37,42 +37,56 @@ triangularPairs
   - [Quickstart](#quickstart)
   - [Table of Contents](#table-of-contents)
   - [Methods](#methods)
-    - [{{Method 1}}()](#method-1)
-    - [{{Method 2}}()](#method-2)
-  - [Presets](#presets)
+    - [.start()](#start)
+    - [.getTokens()](#gettokens)
+    - [.getPairs()](#getpairs)
+    - [.getTriangularPairs()](#gettriangularpairs)
   - [License](#license)
 
 
-## Methods 
+## Methods
 
-The module contains only two methods: `{{Method 1}}()` and `{{Method 2}}()`. Install it with:
+Here are all the public methods listed. `.start(...)` initiates the process. The results can be queried using the `get` methods. The main result can be found under `.getTriangularPairs()`.
 
-```bash
-npm init -y
-npm i {{package_name}}
-```
+### .start()
 
-### {{Method 1}}()
+Starts the process and generates `this.#tokens`, `this.#pairs`, and `this.#triangularPairs`. The results are accessible through the methods listed below.
 
-```js
-{{Method 1}}({{method_1_params}})
-```
+`.start( { pairsEncoded } )`  
+
+returns  
+`this`
+
+### .getTokens()
+
+Filters by tokens and provides references to individual pool pairs.
+
+`.getTokens()`
+
+returns  
+`this.#tokens`
 
 {{Method 1 Description}}
 
-### {{Method 2}}()
+### .getPairs()
 
-```js
-{{Method 2}}({{method_2_params}})
-```
+Filters by pool pairs and lists the possible pools that provide this exchange opportunity under `contracts`. Additionally, the direction is indicated by specifying `tokenA` as the first and `tokenB` as the second position.
+
+`.getPairs()`
+
+returns  
+`this.#pairs`
 
 {{Method 2 Description}}
 
-## Presets
+### .getTriangularPairs()
 
-You can use various presets to generate different badge tables, such as "githubActivity," "githubAdvanced," "githubMinimal," "githubStats," and more.
+Generates all possible unique Triangular Pairs and provides references to further information in `this.#tokens` and `this.#pairs`.
 
-Implementation: [{{presets_link}}]({{presets_link}})
+`.getTriangularPairs()`
+
+returns  
+`this.#triangularPairs`
 
 ## License
 
