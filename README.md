@@ -6,10 +6,10 @@
 Triangular Pairs can be useful for executing composite transactions on a blockchain to efficiently carry out arbitrage opportunities. This module helps in identifying all possible pairs of pools, such as Uniswap V2 or V3, and subsequently conducts further analyses.
 
 ```
- | ------------------------------------------------------------
+  ------------------------------------------------------------
  |                                                            |
  |     |-----|-----|      |-----|-----|      |-----|-----|    |
-  ---> |  A     B  | ---> |  B     Z  | ---> |  Z     A  |--->| 
+  ---> |  A     B  | ---> |  B     Z  | ---> |  Z     A  |---> 
        |-----|-----|      |-----|-----|      |-----|-----|
            Pool n            Pool n             Pool n+2    
          Contract A         Contract B         Contract A
