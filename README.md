@@ -38,6 +38,7 @@ triangularPairs
   - [Table of Contents](#table-of-contents)
   - [Methods](#methods)
     - [.start()](#start)
+    - [encodePairs()](#encodepairs)
     - [.getTokens()](#gettokens)
     - [.getPairs()](#getpairs)
     - [.getTriangularPairs()](#gettriangularpairs)
@@ -84,6 +85,38 @@ console.log( tokens )
 ```
 
 You can find a sample file here: [./tests/pairs-selection.mjs](https://github.com/a6b8/triangularPairs/blob/main/tests/pairs-selection.mjs)
+
+
+
+### encodePairs()
+
+Assists in encoding your data into the expected format for `.start()`. A pool pair needs to be encoded as a single string in the following order: `contractAddress_pairAddress_token1Address_token2Address`.
+
+`.encodePairs { items } )`  
+
+returns  
+`this`
+
+
+```js
+const selection = {
+    "data": [
+        {
+            "contract_address": "0x5c69bee701ef814a2b6a3edd4b1652cb9cc5aa6f",
+            "pair": "0x8c3b2e86aaceb1b7ad8cb96e63881c28f5cef29a",
+            "token1": "0x11a605d7e12b64d713e93c487277d819a1d14b99",
+            "token2": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+            "total": 5434,
+            "tx_hash": "0x1e75b533f8aeda500c5d9837d40319d144c855ef7660679bd7a92368ff958fa7"
+        }
+        ...
+    ]
+}
+
+const pairsEncoded = triangularPairs
+    .encodePairs( { 'items': selection['data'] } )
+
+```
 
 
 ### .getTokens()
