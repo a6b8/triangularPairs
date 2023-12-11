@@ -26,7 +26,7 @@ import { selection } from './tests/data/pairs-selection.mjs'
 const triangularPairs  = new TriangularPairs ()
 const pairsEncoded = triangularPairs
     .encodePairs( { 'items': selection['data'] } )
-triangularPairs
+const result = triangularPairs
     .start( { pairsEncoded } )
     .getTriangularPairs()
 ```
