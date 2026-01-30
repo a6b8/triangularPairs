@@ -362,7 +362,7 @@ export class TriangularPairs {
                     } )
 
                 struct['tokenId'] = struct['pairs']
-                    .sort( ( a, b ) => struct['order'] - struct['order'] )
+                    .sort( ( a, b ) => a['order'] - b['order'] )
                     .map( ( pair, rindex ) => {
                         return [ 'tokenA', 'tokenB' ]
                             .map( key => {
@@ -381,15 +381,15 @@ export class TriangularPairs {
                                 result.push( cmd[ currentPair.findIndex( b => b === start ) ] )
                                 break
                             case 1:
-                                if( acc[ 0 ] === 'forward' ) {
-                                    result.push( cmd[ arr[ 1 ].findIndex( b => b === currentPair[ 1 ] ) ] )
+                                if( acc[ 0 ][ 1 ] === 'forward' ) {
+                                    result.push( cmd[ currentPair.findIndex( b => b === acc[ 0 ][ 0 ][ 1 ] ) ] )
                                 } else {
-                                    result.push( cmd[ arr[ 1 ].findIndex( b => b === currentPair[ 0 ] ) ] )
+                                    result.push( cmd[ currentPair.findIndex( b => b === acc[ 0 ][ 0 ][ 0 ] ) ] )
                                 }
                                 break
                             case 2:
-                                const start2 = currentPair.filter( b => arr[ 2 ].includes( b ) )[ 0 ]
-                                if( start2 !== arr[ 2 ][ 0 ] ) {
+                                const start2 = currentPair.filter( b => arr[ 0 ].includes( b ) )[ 0 ]
+                                if( start2 !== currentPair[ 0 ] ) {
                                     result.push( cmd[ 0 ] )
                                 } else {
                                     result.push( cmd[ 1 ] )
