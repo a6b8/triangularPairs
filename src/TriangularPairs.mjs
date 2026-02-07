@@ -1,9 +1,11 @@
+import { EventEmitter } from 'events'
 import fs from 'fs'
+
 import { config } from './data/config.mjs'
 import { printMessages } from './helpers/mixed.mjs'
 
 
-export class TriangularPairs {
+export class TriangularPairs extends EventEmitter {
     #config
     #tokens
     #pairs
@@ -11,10 +13,9 @@ export class TriangularPairs {
 
 
     constructor( silent ) {
+        super()
         this.#config = config
         this.silent = silent
-
-        return true
     }
 
 
@@ -66,6 +67,7 @@ export class TriangularPairs {
 
 
     #addPairList( { pairsEncoded } ) {
+        this.emit( 'progress', { 'phase': 'addPairList', 'type': 'start' } )
         this.#consolePrintLine( { 'value1':'  Add PairList', 'value2': '', 'part': 'both' } )
 
         const all_pairs = pairsEncoded
@@ -81,7 +83,9 @@ export class TriangularPairs {
                 }
 
                 if( index % 1000 == 0 ) {
-                    const progress = `${Math.floor( ( index * 100 ) / pairsEncoded.length )} % (${index})`
+                    const percent = Math.floor( ( index * 100 ) / pairsEncoded.length )
+                    const progress = `${percent} % (${index})`
+                    this.emit( 'progress', { 'phase': 'addPairList', 'type': 'update', percent, 'count': index } )
                     this.#consolePrintLine( { 'value1':'  Add PairList', 'value2': `${progress}`, 'part': 'update' } )
                 }
 
@@ -208,6 +212,13 @@ export class TriangularPairs {
             .join( ', ' )
 
         this.#consolePrintLine( { 'value1':'  Add PairList', 'value2': `${str}`, 'part': 'update' } )
+        this.emit( 'progress', {
+            'phase': 'addPairList',
+            'type': 'end',
+            'tokens': Object.keys( this.#tokens ).length,
+            'pairs': this.#pairs.length,
+            'contracts': contractTotal.size
+        } )
 
         Object
             .keys( this.#tokens )
@@ -220,12 +231,15 @@ export class TriangularPairs {
 
 
     #addUniquess() {
+        this.emit( 'progress', { 'phase': 'addUniquess', 'type': 'start' } )
         this.#consolePrintLine( { 'value1':'  Add Uniquess', 'value2': '', 'part': 'both' } )
         const uniques = {}
         const tmp = this.#pairs
             .reduce( ( aaa, pair, index ) => {
                 if( index % 100 == 0 ) {
-                    const progress = `${Math.floor( ( index * 100 ) / this.#pairs.length )} % (${index})`
+                    const percent = Math.floor( ( index * 100 ) / this.#pairs.length )
+                    const progress = `${percent} % (${index})`
+                    this.emit( 'progress', { 'phase': 'addUniquess', 'type': 'update', percent, 'count': index } )
                     this.#consolePrintLine( { 'value1':'  Add Uniquess', 'value2': `${progress}`, 'part': 'update' } )
                 }
 
@@ -329,12 +343,14 @@ export class TriangularPairs {
             }, {} )
 
         this.#consolePrintLine( { 'value1':'  Add Uniques', 'value2': `${Object.keys( uniques ).length} Triangular Pairs.`, 'part': 'update' } )
+        this.emit( 'progress', { 'phase': 'addUniquess', 'type': 'end', 'triangularPairs': Object.keys( uniques ).length } )
 
         return uniques
     }
 
 
     #addTriangular( { uniques } ) {
+        this.emit( 'progress', { 'phase': 'addTriangular', 'type': 'start' } )
         this.#consolePrintLine( { 'value1':'  Add Triangular', 'value2': '', 'part': 'start' } )
 
         this.#triangularPairs = Object
@@ -416,6 +432,7 @@ export class TriangularPairs {
             } )
 
         this.#consolePrintLine( { 'value1':'  Add Triangular', 'value2': '', 'part': 'end' } )
+        this.emit( 'progress', { 'phase': 'addTriangular', 'type': 'end' } )
 
         return true
     }
