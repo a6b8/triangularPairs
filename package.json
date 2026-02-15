@@ -7,11 +7,21 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test:coverage:src": "NODE_OPTIONS='--experimental-vm-modules' jest --coverage --collectCoverageFrom='src/**/*.mjs'",
+    "test:file": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "test:manual:file": "node tests/manual/json-file-test.mjs",
     "test:manual:folder": "node tests/manual/json-folder-test.mjs"
   },
-  "keywords": [ "defi", "uniswap", "crypto" ],
+  "keywords": [
+    "defi",
+    "uniswap",
+    "crypto"
+  ],
   "author": "a6b8",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@jest/globals": "^30.2.0",
+    "jest": "^30.2.0"
+  }
 }
